@@ -1,0 +1,88 @@
+providers: [
+  {
+    key: "bt"
+    config:
+      commands: [
+        {
+          project: "C:\\Users\\Cédric\\Desktop\\c\\t"
+          source: "C:\\Users\\Cédric\\Desktop\\c\\t\\.build-tools.cson"
+          name: "Compile"
+          command: "make"
+          wd: "."
+          env: {}
+          modifier:
+            save_all: {}
+          environment:
+            name: "child_process"
+            config:
+              stdoe: "both"
+          stdout:
+            pipeline: []
+          stderr:
+            pipeline: []
+          output:
+            console:
+              close_success: false
+              queue_in_buffer: true
+              colors: false
+              stdin: false
+            linter:
+              no_trace: false
+              immediate: false
+          version: 2
+        }
+        {
+          project: "C:\\Users\\Cédric\\Desktop\\c\\t"
+          source: "C:\\Users\\Cédric\\Desktop\\c\\t\\.build-tools.cson"
+          name: "Clean and Compile"
+          command: "make everything"
+          wd: "."
+          env: {}
+          modifier:
+            save_all: {}
+          environment:
+            name: "child_process"
+            config:
+              stdoe: "both"
+          stdout:
+            pipeline: []
+          stderr:
+            pipeline: []
+          output:
+            console:
+              close_success: true
+              queue_in_buffer: true
+              colors: false
+              stdin: false
+          version: 2
+        }
+        {
+          project: "C:\\Users\\Cédric\\Desktop\\c\\t"
+          source: "C:\\Users\\Cédric\\Desktop\\c\\t\\.build-tools.cson"
+          name: "Execute"
+          command: "build\\main.exe"
+          wd: "."
+          env: {}
+          modifier: {}
+          environment:
+            name: "child_process"
+            config:
+              stdoe: "both"
+          stdout:
+            pipeline: []
+          stderr:
+            pipeline: []
+          output:
+            console:
+              close_success: true
+              queue_in_buffer: true
+              colors: false
+              stdin: false
+            linter:
+              no_trace: false
+              immediate: false
+          version: 2
+        }
+      ]
+  }
+]
