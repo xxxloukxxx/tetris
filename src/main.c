@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
         break;
       }
       clear_screen();
-      draw_field(g, g.current);
+      draw_field(g);
       SDL_RenderPresent(renderer);
     }
     // drop_block(&g);

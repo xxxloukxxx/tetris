@@ -9,7 +9,9 @@ Uint8 block_color[8][3]; /* le dernier est blanc */
 
 void draw_square(int x, int y, Uint8 c);
 void draw_square_ext(int x, int y, Uint8 c, Uint8 a);
+void draw_little_square(int x, int y, Uint8 c);
+void draw_next_block(t_tetris_game g, int x, int y, int i);
 void clear_screen();
-void draw_field(t_tetris_game g, t_block t);
+void draw_field(t_tetris_game g);
 
 #endif

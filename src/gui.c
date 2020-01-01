@@ -17,17 +17,29 @@ Uint8 block_color[8][3] = {{0x00, 0xFF, 0xFF}, {0x00, 0x00, 0xFF},
 /*
  *
  */
-void draw_field(t_tetris_game g, t_block t) {
+void draw_field(t_tetris_game g) {
   int x, y, c = 0;
+  t_block t = g.current;
   t_block ghost = t;
   /* Position de départ de la fenetre */
-  int xd = (SCREEN_WIDTH - XSIZE * SQUARE_W) / 3,
+  int xd = (SCREEN_WIDTH - XSIZE * SQUARE_W) / 2,
       yd = (SCREEN_HEIGHT - YSIZE * SQUARE_W) / 2;
 
   /* Le contour blanc */
   for (c = 1; c < 5; c++) {
     draw_rect(xd - c, yd - c, (XSIZE * SQUARE_W) + 2 * c,
               (YSIZE * SQUARE_W) + 2 * c, 7);
+  }
+
+  /* La grille */
+  SDL_SetRenderDrawColor(renderer, 50, 50, 50, 100);
+  for (x = 0; x < XSIZE + 1; x++) {
+    SDL_RenderDrawLine(renderer, xd + x * SQUARE_W, yd, xd + x * SQUARE_W,
+                       yd + YSIZE * SQUARE_W - 1);
+  }
+  for (y = 0; y < YSIZE + 1; y++) {
+    SDL_RenderDrawLine(renderer, xd, yd + y * SQUARE_W,
+                       xd + XSIZE * SQUARE_W - 1, yd + y * SQUARE_W);
   }
 
   /* Le contenu */
@@ -55,8 +67,26 @@ void draw_field(t_tetris_game g, t_block t) {
       for (x = 0; x < 4; x++) {
         if (block_xy(ghost, x, y))
           draw_square_ext(xd + (x + ghost.x) * SQUARE_W,
-                          yd + (y + ghost.y) * SQUARE_W, ghost.type, 100);
+                          yd + (y + ghost.y) * SQUARE_W, ghost.type, 50);
       }
+    }
+  }
+
+  /* Draw next block */
+  for (x = 0; x < 7; x++)
+    draw_next_block(g, xd + XSIZE * SQUARE_W + 10, yd + x * SQUARE_W * 2, x);
+}
+
+void draw_next_block(t_tetris_game g, int x, int y, int i) {
+  int xx, yy;
+  t_block t;
+  t.type = g.next[i];
+  t.rotate = 0;
+  for (yy = 0; yy < 4; yy++) {
+    for (xx = 0; xx < 4; xx++) {
+      if (block_xy(t, xx, yy))
+        draw_little_square(x + (xx)*SQUARE_W / 2, y + (yy)*SQUARE_W / 2,
+                           t.type);
     }
   }
 }
@@ -71,6 +101,17 @@ void draw_square_ext(int x, int y, Uint8 c, Uint8 a) {
   r.h = SQUARE_W;
   SDL_SetRenderDrawColor(renderer, block_color[c][0], block_color[c][1],
                          block_color[c][2], a);
+  SDL_RenderFillRect(renderer, &r);
+}
+
+void draw_little_square(int x, int y, Uint8 c) {
+  SDL_Rect r;
+  r.x = x;
+  r.y = y;
+  r.w = SQUARE_W / 2;
+  r.h = SQUARE_W / 2;
+  SDL_SetRenderDrawColor(renderer, block_color[c][0], block_color[c][1],
+                         block_color[c][2], 255);
   SDL_RenderFillRect(renderer, &r);
 }
 
