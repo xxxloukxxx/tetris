@@ -7,8 +7,8 @@
 #include <stdlib.h>
 #include <time.h>
 /**
-* Essai
-*/
+ * Essai
+ */
 int main(int argc, char *argv[]) {
   (void)argc;
   (void)argv;
@@ -50,9 +50,7 @@ int main(int argc, char *argv[]) {
         case SDL_SCANCODE_UP:
           drop_block(&g);
           check_lines(&g);
-          g.current.type = rand() % 7;
-          g.current.x = -1 + (XSIZE / 2);
-          g.current.y = 0;
+          update_current_block(&g);
           break;
         default:
           break;

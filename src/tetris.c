@@ -8,7 +8,7 @@
  */
 int blocks[7][4] = {
     {0x0F00, 0x2222, 0x00F0, 0x4444}, {0x8E00, 0x6440, 0x0E20, 0x44C0},
-    {0x2E00, 0x4460, 0x0E80, 0xC440}, {0x0660, 0x0660, 0x0660, 0x0660},
+    {0x2E00, 0x4460, 0x0E80, 0xC440}, {0x6600, 0x6600, 0x6600, 0x6600},
     {0x6C00, 0x4620, 0x06C0, 0x8C40}, {0x4E00, 0x4640, 0x0E40, 0x4C40},
     {0xC600, 0x2640, 0x0C60, 0x4C80}};
 
@@ -130,16 +130,41 @@ void t_tetris_game_init(t_tetris_game *g) {
   for (x = 0; x < XSIZE; x++)
     for (y = 0; y < YSIZE; y++)
       g->f[x][y] = -1;
-  g->current.type = rand() % 7;
-  g->current.rotate = rand() % 4;
+  generate_next_blocks(g);
+  for (i = 0; i < 7; i++) {
+    g->next[i] = g->next[i + 7];
+  }
+  generate_next_blocks(g);
+  update_current_block(g);
+}
+
+void generate_next_blocks(t_tetris_game *g) {
+  int tab[7] = {0, 1, 2, 3, 4, 5, 6};
+  int i, i1, i2, temp;
+  for (i = 0; i < 400; i++) {
+    i1 = rand() % 7;
+    i2 = rand() % 7;
+    temp = tab[i1];
+    tab[i1] = tab[i2];
+    tab[i2] = temp;
+  }
+  for (i = 0; i < 7; i++) {
+    (*g).next[i + 7] = tab[i];
+  }
+}
+
+void update_current_block(t_tetris_game *g) {
+  int i;
+  g->current.type = g->next[0];
+  g->current.rotate = 0;
   g->current.x = -1 + (XSIZE / 2);
   g->current.y = 0;
-  for (i = 0; i < 5; i++) {
-    g->next[i].type = rand() % 7;
-    g->next[i].rotate = rand() % 4;
-    g->next[i].x = -1 + (XSIZE / 2);
-    g->next[i].y = 0;
+  for (i = 0; i < 13; i++) {
+    g->next[i] = g->next[i + 1];
   }
+  g->next[13] = -1;
+  if (g->next[7] == -1)
+    generate_next_blocks(g);
 }
 
 bool block_xy(t_block b, int x, int y) {

@@ -23,7 +23,7 @@ typedef struct {
 typedef struct {
   int f[XSIZE][YSIZE];
   t_block current;
-  t_block next[5];
+  int next[14];
 } t_tetris_game;
 
 /*
@@ -54,5 +54,7 @@ void print_game(t_tetris_game g, t_block t);
 bool block_xy(t_block b, int x, int y);
 bool block_valid(t_tetris_game g, t_block b);
 int check_lines(t_tetris_game *g);
+void generate_next_blocks(t_tetris_game *g);
+void update_current_block(t_tetris_game *g);
 
 #endif
