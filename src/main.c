@@ -66,6 +66,7 @@ int main(int argc, char *argv[]) {
         }
         break;
       }
+      /* Affichage */
       clear_screen();
       draw_game(g);
       SDL_RenderPresent(renderer);
@@ -74,6 +75,7 @@ int main(int argc, char *argv[]) {
     // move_block(&g, 'l');
   }
 
+  /* et on s'en va */
   quit_SDL2();
   return EXIT_SUCCESS;
 }

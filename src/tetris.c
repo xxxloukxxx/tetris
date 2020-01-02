@@ -187,19 +187,3 @@ bool block_valid(t_tetris_game g, t_block b) {
       }
   return true;
 }
-
-void print_game(t_tetris_game g, t_block t) {
-  int x, y;
-  for (y = 0; y < YSIZE; y++) {
-    for (x = 0; x < XSIZE; x++) {
-      if (in(x - t.x, 0, 3) && in(y - t.y, 0, 3)) {
-        printf("%c", (block_xy(t, x - t.x, y - t.y) && block_valid(g, t))
-                         ? t.type + 48
-                         : '.');
-      } else {
-        printf("%c", (g.f[x][y] == (-1)) ? '.' : g.f[x][y] + 48);
-      }
-    }
-    printf("\n");
-  }
-}

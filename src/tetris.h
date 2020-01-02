@@ -50,7 +50,6 @@ void t_tetris_game_init(t_tetris_game *g);
 bool move_block(t_tetris_game *g, char dir);
 bool rotate_block(t_tetris_game *g, bool clockwise);
 bool drop_block(t_tetris_game *g);
-void print_game(t_tetris_game g, t_block t);
 bool block_xy(t_block b, int x, int y);
 bool block_valid(t_tetris_game g, t_block b);
 int check_lines(t_tetris_game *g);
