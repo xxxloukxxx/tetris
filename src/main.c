@@ -47,6 +47,9 @@ int main(int argc, char *argv[]) {
         case SDL_SCANCODE_C:
           rotate_block(&g, false);
           break;
+        case SDL_SCANCODE_X:
+          hold(&g);
+          break;
         case SDL_SCANCODE_LEFT:
           move_block(&g, 'l');
           break;

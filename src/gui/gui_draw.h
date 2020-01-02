@@ -14,6 +14,7 @@ int block_c[9];
 void draw_field(t_tetris_game g);
 void draw_block(t_block t, int alpha);
 void draw_next_blocks(t_tetris_game g);
+void draw_hold_block(t_tetris_game g);
 void draw_ghost_block(t_tetris_game g, int alpha);
 void draw_grid(int alpha);
 

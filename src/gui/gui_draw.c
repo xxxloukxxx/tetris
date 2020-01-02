@@ -6,6 +6,7 @@
 #define RED(x) ((x & 0xFF0000) >> 16)
 #define GREEN(x) ((x & 0x00FF00) >> 8)
 #define BLUE(x) (x & 0x0000FF)
+//#define FIELD_X ((SCREEN_WIDTH - (XSIZE * SQUARE_SIZE)) / 2)
 #define FIELD_X ((SCREEN_WIDTH - (XSIZE * SQUARE_SIZE)) / 2)
 #define FIELD_Y ((SCREEN_HEIGHT - (YSIZE * SQUARE_SIZE)) / 2)
 #define NEXT_X (XSIZE * SQUARE_SIZE + FIELD_X)
@@ -56,14 +57,29 @@ void draw_next_blocks(t_tetris_game g) {
   }
 }
 
+void draw_hold_block(t_tetris_game g) {
+  int size = SQUARE_SIZE / 2, dec = 0, decy = 0;
+  draw_rect(FIELD_X - 5 * size, FIELD_Y, 5 * size, 5 * size, C_WHITE, 100,
+            true);
+  draw_rect(FIELD_X - 5 * size - 1, FIELD_Y - 1, 5 * size + 1, 5 * size + 1,
+            C_WHITE, 255, false);
+  // draw_rect(NEXT_X, NEXT_Y - 1, 5 * size, n * 5 * size, C_WHITE, 255, false);
+  dec = (g.hold_block == 0 || g.hold_block == 3) ? -size / 2 : 0;
+  decy = (g.hold_block != 0) ? size / 2 : 0;
+  draw_mini_block(g.hold_block, FIELD_X - 4 * size + dec, FIELD_Y + size + decy,
+                  size);
+}
+
 /* Dessine un mini block en x y */
 void draw_mini_block(int type, int x, int y, int size) {
   int xx, yy;
-  t_block t = {.type = type, .rotate = 0};
-  for (yy = 0; yy < 4; yy++)
-    for (xx = 0; xx < 4; xx++)
-      if (block_xy(t, xx, yy))
-        draw_squar(x + xx * size, y + yy * size, size, type, 255);
+  if (type >= 0) {
+    t_block t = {.type = type, .rotate = 0};
+    for (yy = 0; yy < 4; yy++)
+      for (xx = 0; xx < 4; xx++)
+        if (block_xy(t, xx, yy))
+          draw_squar(x + xx * size, y + yy * size, size, type, 255);
+  }
 }
 
 /* dessine le block "ghost" */

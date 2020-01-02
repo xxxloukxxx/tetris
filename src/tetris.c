@@ -125,6 +125,27 @@ bool drop_block(t_tetris_game *g) {
   return true;
 }
 
+bool hold(t_tetris_game *g) {
+  int t = 0;
+  if (g->hold_ok) {
+    if (g->hold_block == -1) {
+      g->hold_block = g->current.type;
+      update_current_block(g);
+    } else {
+      t = g->hold_block;
+      g->hold_block = g->current.type;
+      g->current.type = t;
+      g->current.rotate = 0;
+      g->current.x = -1 + (XSIZE / 2);
+      g->current.y = 0;
+    }
+    g->hold_ok = false;
+    return true;
+  } else {
+    return false;
+  }
+}
+
 void t_tetris_game_init(t_tetris_game *g) {
   int x, y, i;
   for (x = 0; x < XSIZE; x++)
@@ -136,6 +157,8 @@ void t_tetris_game_init(t_tetris_game *g) {
   }
   generate_next_blocks(g);
   update_current_block(g);
+  g->hold_ok = true;
+  g->hold_block = -1;
 }
 
 void generate_next_blocks(t_tetris_game *g) {
@@ -165,6 +188,7 @@ void update_current_block(t_tetris_game *g) {
   g->next[13] = -1;
   if (g->next[7] == -1)
     generate_next_blocks(g);
+  g->hold_ok = true;
 }
 
 bool block_xy(t_block b, int x, int y) {

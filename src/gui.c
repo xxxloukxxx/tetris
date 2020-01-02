@@ -11,6 +11,7 @@ void draw_game(t_tetris_game g) {
   draw_block(g.current, 255);
   draw_ghost_block(g, 100);
   draw_next_blocks(g);
+  draw_hold_block(g);
 }
 
 /* Efface l'écran */
