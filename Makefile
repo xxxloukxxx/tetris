@@ -4,7 +4,7 @@ CFLAGS=-W -Wall -Isrc/SDL2/include
 LDFLAGS=-Lsrc/SDL2/lib -lmingw32 -lSDL2main -lSDL2
 
 EXEC=main
-SRC= $(wildcard *.c) $(wildcard src/*.c)
+SRC= $(wildcard *.c) $(wildcard src/*.c) $(wildcard src/gui/*.c)
 OBJ= $(SRC:.c=.o)
 
 all: $(EXEC)
@@ -18,7 +18,7 @@ main: $(OBJ)
 .PHONY: clean mrproper
 
 clean:
-	@del /Q /F src\*.o 2> NUL
+	@del /Q /F src\*.o src\gui\*.o 2> NUL
 
 mrproper: clean
 	@del /Q /F build\$(EXEC).exe 2> NUL

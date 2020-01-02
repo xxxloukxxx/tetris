@@ -1,32 +1,41 @@
+// Includes
 #include "gui.h"
 #include "init_video.h"
 #include "tetris.h"
+// Standard include
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 /**
- * Essai
+ * Code principal
  */
 int main(int argc, char *argv[]) {
   (void)argc;
   (void)argv;
-
+  /* Initialisation */
+  /* ... Video / SDL2 */
   init_SDL2();
   SDL_Event event;
-
+  /* Des paramètres de jeu */
   t_tetris_game g;
   srand(time(NULL));
   t_tetris_game_init(&g);
 
+  /* boucle principale */
   Uint8 quit = 0;
   while (!quit) {
+
+    /* gestion des événements */
     while (SDL_PollEvent(&event)) {
+      /* Si on quit */
       switch (event.type) {
       case SDL_QUIT:
         quit = 1;
         break;
+      /* Keyboard event */
       case SDL_KEYDOWN:
         switch (event.key.keysym.scancode) {
         case SDL_SCANCODE_ESCAPE:
@@ -58,7 +67,7 @@ int main(int argc, char *argv[]) {
         break;
       }
       clear_screen();
-      draw_field(g);
+      draw_game(g);
       SDL_RenderPresent(renderer);
     }
     // drop_block(&g);
