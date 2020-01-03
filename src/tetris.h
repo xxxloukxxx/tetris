@@ -54,11 +54,12 @@ bool rotate_block(t_tetris_game *g, bool clockwise);
 bool drop_block(t_tetris_game *g);
 bool hold(t_tetris_game *g);
 int check_lines(t_tetris_game *g);
+void update_current_block(t_tetris_game *g);
+int update_score(int score, int nb_lines_clear);
 //
 bool block_xy(t_block b, int x, int y);
 bool block_valid(t_tetris_game g, t_block b);
 void generate_next_blocks(t_tetris_game *g);
-void update_current_block(t_tetris_game *g);
 //
 
 #endif

@@ -12,14 +12,23 @@ void draw_text_ext(char *str, int x, int y, char t[][8]) {
   bool set;
   while (str[len] != '\0')
     len++;
-  SDL_Point points[len * 64];
+  SDL_Point points[len * 64 * 4];
   while (str[i] != '\0') {
     for (xx = 0; xx < 8; xx++) {
       for (yy = 0; yy < 8; yy++) {
         set = t[(unsigned int)str[i]][yy] & 1 << xx;
         if (set) {
-          points[idx_point].x = 8 * i + x + xx;
-          points[idx_point].y = y + yy;
+          points[idx_point].x = x + 2 * (8 * i + xx);
+          points[idx_point].y = y + 2 * yy;
+          idx_point++;
+          points[idx_point].x = x + 2 * (8 * i + xx) + 1;
+          points[idx_point].y = y + 2 * yy + 1;
+          idx_point++;
+          points[idx_point].x = x + 2 * (8 * i + xx) + 1;
+          points[idx_point].y = y + 2 * yy;
+          idx_point++;
+          points[idx_point].x = x + 2 * (8 * i + xx);
+          points[idx_point].y = y + 2 * yy + 1;
           idx_point++;
         }
       }

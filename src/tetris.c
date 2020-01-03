@@ -40,6 +40,28 @@ int SRS_I_test_table[8][5][2] = {
 /*
  * Les fonctions
  */
+int update_score(int score, int nb_lines_clear) {
+  switch (nb_lines_clear) {
+  case 0:
+    return score;
+    break;
+  case 1:
+    return score + 10;
+    break;
+  case 2:
+    return score + 25;
+    break;
+  case 3:
+    return score + 50;
+    break;
+  case 4:
+    return score + 100;
+    break;
+  default:
+    return score;
+  }
+}
+
 int check_lines(t_tetris_game *g) {
   int x, y, yy;
   int nb_lines_clear = 0;

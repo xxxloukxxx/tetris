@@ -1,9 +1,11 @@
 #include "gui_draw.h"
+#include "gui_text.h"
 #include "init_video.h"
 // Pour le t_tetris_game
 #include "..\tetris.h"
 // Pour afficher
 #include <SDL2/SDL.h>
+#include <stdio.h>
 
 // Taille des carrés
 #define SQUARE_SIZE 28
@@ -44,6 +46,15 @@ void draw_game(t_tetris_game g) {
   draw_ghost_block(g, 100);
   draw_next_blocks(g);
   draw_hold_block(g);
+}
+
+/* Draw score */
+void draw_score(int score, int nb_lines_clear) {
+  char buf[50];
+  sprintf(buf, "Score : %i", score);
+  draw_text(buf, 16, 16);
+  sprintf(buf, "Lines : %i", nb_lines_clear);
+  draw_text(buf, 16, 32);
 }
 
 /* Dessine un block */

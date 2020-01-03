@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SCREEN_WIDTH 800
+#define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 600
 #define WINDOWS_TITLE "Prout"
 #define WINDOWS_FLAGS SDL_WINDOW_SHOWN /* || SDL_WINDOW_FULLSCREEN */

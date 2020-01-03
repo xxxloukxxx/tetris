@@ -4,6 +4,7 @@
 #include "tetris.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 /*
  * GO Et c'est parti
@@ -15,6 +16,7 @@ int main(int argc, char *argv[]) {
   init_SDL2();
 
   /*  Initialisation des paramètres du t_tetris_game */
+  srand(time(NULL));
   t_tetris_game g;
 
   /* Go */
