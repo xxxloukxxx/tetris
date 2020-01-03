@@ -1,41 +1,51 @@
 #include "gui_draw.h"
-#include "..\init_video.h"
+#include "init_video.h"
+// Pour le t_tetris_game
 #include "..\tetris.h"
+// Pour afficher
 #include <SDL2/SDL.h>
 
-#define RED(x) ((x & 0xFF0000) >> 16)
-#define GREEN(x) ((x & 0x00FF00) >> 8)
-#define BLUE(x) (x & 0x0000FF)
+// Taille des carrés
+#define SQUARE_SIZE 28
+
+// Coordonnées pratique
 #define FIELD_X ((SCREEN_WIDTH - (XSIZE * SQUARE_SIZE)) / 2)
 #define FIELD_Y ((SCREEN_HEIGHT - (YSIZE * SQUARE_SIZE)) / 2)
 #define NEXT_X (XSIZE * SQUARE_SIZE + FIELD_X)
 #define NEXT_Y (FIELD_Y)
 
-/*
- *Les couleurs des blocks
- */
+// Defines pour les couleurs
+#define RED(x) ((x & 0xFF0000) >> 16)
+#define GREEN(x) ((x & 0x00FF00) >> 8)
+#define BLUE(x) (x & 0x0000FF)
 int block_c[9] = {0x00FFFF, 0x0000FF, 0xFFAA00, 0xFFFF00, 0x00FF00,
                   0x9900FF, 0xFF0000, 0xFFFFFF, 0x000000};
 #define C_WHITE 7
 #define C_BLACK 8
 
-/******************************************************************************
- * Déclaration des fonctions propre à gui_draw
- ******************************************************************************/
-/* x et y : coordonnées de la "case" a remplir dans le field */
+// Déclaration des fonctions
+void draw_field(t_tetris_game g);
+void draw_block(t_block t, int alpha);
+void draw_next_blocks(t_tetris_game g);
+void draw_hold_block(t_tetris_game g);
+void draw_ghost_block(t_tetris_game g, int alpha);
+void draw_grid(int alpha);
 void draw_field_squar(int x, int y, int c);
 void draw_field_squar_ext(int x, int y, int c, int alpha);
-
-/* x et y en pixel */
 void draw_squar(int x, int y, int w, int c, int alpha);
 void draw_rect(int x, int y, int w, int h, int c, int alpha, bool fill);
-
-/* pour les next block */
 void draw_mini_block(int type, int x, int y, int size);
 
-/******************************************************************************
- * Définitions des fonctions
- ******************************************************************************/
+// Définition des fonctions
+void draw_game(t_tetris_game g) {
+  draw_grid(50);
+  draw_field(g);
+  draw_block(g.current, 255);
+  draw_ghost_block(g, 100);
+  draw_next_blocks(g);
+  draw_hold_block(g);
+}
+
 /* Dessine un block */
 void draw_block(t_block t, int alpha) {
   int x, y;
@@ -140,4 +150,9 @@ void draw_rect(int x, int y, int w, int h, int c, int alpha, bool fill) {
     else
       SDL_RenderFillRect(renderer, &r);
   }
+}
+
+void clear_screen() {
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+  SDL_RenderClear(renderer);
 }

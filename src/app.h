@@ -1,11 +1,14 @@
 #ifndef _APP_H_
 #define _APP_H_
+//
+#include "tetris.h"
+//
+#define GS_MENU 1
+#define GS_PLAY 2
+#define GS_QUIT 3
 
-#define GS_MENU 0x01
+int game_status;
 
-typedef struct {
-  int app_state;
-  unsigned int score;
-} params;
-
+int play_tetris(t_tetris_game *ptr_g);
+int menu();
 #endif

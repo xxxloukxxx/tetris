@@ -1,7 +1,6 @@
 #include "gui_text.h"
-#include "..\init_video.h"
-#include "..\tetris.h"
 #include "font/font8x8.h"
+#include "init_video.h"
 #include <SDL2/SDL.h>
 
 void draw_text(char *str, int x, int y) {
