@@ -8,7 +8,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+/*_________________TEST DEBUG*/
+#include "gui/gui_text.h"
+/* _______*/
 /**
  * Code principal
  */
@@ -71,6 +73,7 @@ int main(int argc, char *argv[]) {
       }
       /* Affichage */
       clear_screen();
+      draw_text("plop", 10, 10);
       draw_game(g);
       SDL_RenderPresent(renderer);
     }
