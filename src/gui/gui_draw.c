@@ -6,7 +6,6 @@
 #define RED(x) ((x & 0xFF0000) >> 16)
 #define GREEN(x) ((x & 0x00FF00) >> 8)
 #define BLUE(x) (x & 0x0000FF)
-//#define FIELD_X ((SCREEN_WIDTH - (XSIZE * SQUARE_SIZE)) / 2)
 #define FIELD_X ((SCREEN_WIDTH - (XSIZE * SQUARE_SIZE)) / 2)
 #define FIELD_Y ((SCREEN_HEIGHT - (YSIZE * SQUARE_SIZE)) / 2)
 #define NEXT_X (XSIZE * SQUARE_SIZE + FIELD_X)
