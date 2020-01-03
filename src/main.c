@@ -1,5 +1,6 @@
 // Includes
 #include "gui.h"
+#include "gui/gui_text.h"
 #include "init_video.h"
 #include "tetris.h"
 // Standard include
@@ -8,10 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-/*_________________TEST DEBUG*/
-#include "gui/gui_text.h"
-/* _______*/
-/**
+/*
  * Code principal
  */
 int main(int argc, char *argv[]) {
@@ -73,12 +71,9 @@ int main(int argc, char *argv[]) {
       }
       /* Affichage */
       clear_screen();
-      draw_text("plop", 10, 10);
       draw_game(g);
       SDL_RenderPresent(renderer);
     }
-    // drop_block(&g);
-    // move_block(&g, 'l');
   }
 
   /* et on s'en va */

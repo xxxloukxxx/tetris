@@ -1,6 +1,7 @@
 #ifndef _GUI_H_
 #define _GUI_H_
 #include "gui/gui_draw.h"
+#include "gui/gui_event.h"
 #include "gui/gui_text.h"
 #include "tetris.h"
 
