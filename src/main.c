@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 /*
- * GOGOGO
+ * GO Et c'est parti
  */
 int main(int argc, char *argv[]) {
   (void)argc;
