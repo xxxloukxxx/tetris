@@ -6,9 +6,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-/*
- * GO Et c'est parti
- */
 int main(int argc, char *argv[]) {
     (void)argc;
     (void)argv;
@@ -35,7 +32,6 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    /* et on s'en va */
     quit_SDL2();
     return EXIT_SUCCESS;
 }

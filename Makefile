@@ -1,7 +1,7 @@
 CC=gcc
 # CFLAGS=-W -Wall -ansi -pedantic -Isrc/SDL2/include
-CFLAGS=-W -Wall -Isrc/SDL2/include
-LDFLAGS=-Lsrc/SDL2/lib -lmingw32 -lSDL2main -lSDL2
+CFLAGS=-W -Wall -O3 -Isrc/SDL2/include
+LDFLAGS=-Lsrc/SDL2/lib -lmingw32 -lSDL2main -lSDL2 -mwindows
 
 EXEC=main
 SRC= $(wildcard *.c) $(wildcard src/*.c) $(wildcard src/gui/*.c)
