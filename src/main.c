@@ -17,21 +17,20 @@ int main(int argc, char *argv[]) {
 
     /*  Initialisation des paramètres du t_tetris_game */
     srand(time(NULL));
-    // t_tetris_game g;
+    t_tetris_game_init(&g);
 
     /* Go */
-    game_status = GS_PLAY;
+    game_status = GS_MENU;
     while(game_status != GS_QUIT) {
         switch(game_status) {
             case GS_MENU:
-                game_status = menu();
+                menu();
                 break;
             case GS_PLAY:
             case GS_PLAY_RESTART:
                 t_tetris_game_init(&g);
                 game_status = GS_PLAY;
-                // game_status = play_tetris(&g);
-                game_status = play();
+                play();
                 break;
         }
     }

@@ -8,9 +8,6 @@
 #include <stdio.h>
 
 // Coordonnées pratique
-// #define FIELD_X ((SCREEN_WIDTH - (XSIZE * SQUARE_SIZE)) / 2)
-// #define FIELD_X 128
-// #define FIELD_Y ((SCREEN_HEIGHT - (YSIZE * SQUARE_SIZE)) / 2)
 #define NEXT_X (XSIZE * SQUARE_SIZE + FIELD_X)
 #define NEXT_Y (FIELD_Y)
 
@@ -23,12 +20,10 @@ int block_c[9] = { 0x00FFFF, 0x0000FF, 0xFFAA00, 0xFFFF00, 0x00FF00, 0x9900FF, 0
 #define C_BLACK 8
 
 // Déclaration des fonctions
-void draw_field(t_tetris_game g);
 void draw_block(t_block t, int alpha);
 void draw_next_blocks(t_tetris_game g);
 void draw_hold_block(t_tetris_game g);
 void draw_ghost_block(t_tetris_game g, int alpha);
-void draw_grid(int alpha);
 void draw_field_squar(int x, int y, int c);
 void draw_field_squar_ext(int x, int y, int c, int alpha);
 void draw_squar(int x, int y, int w, int c, int alpha);

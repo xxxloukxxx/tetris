@@ -14,5 +14,7 @@ void draw_game(t_tetris_game g);
 void draw_score(int *draw_line, int score, int nb_lines_clear);
 void draw_info_text(char *str, int *l);
 void clear_screen();
+void draw_field(t_tetris_game g);
+void draw_grid(int alpha);
 
 #endif
